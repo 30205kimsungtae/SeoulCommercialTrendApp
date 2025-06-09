@@ -40,3 +40,8 @@ else:
         st.pyplot(fig)
     else:
         st.warning("📉 시각화에 필요한 컬럼이 없습니다.")
+
+import os
+
+file_path = "/mnt/data/seoul_data.csv"
+print("파일 존재 여부:", os.path.exists(file_path))
