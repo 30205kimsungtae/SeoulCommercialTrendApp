@@ -22,12 +22,13 @@ filtered_df = df[df['상권_코드_명'] == area]
 st.write(f"### 선택한 상권: {area}")
 st.dataframe(filtered_df)
 
-# 시각화 (예: 분기별 점포 수 변화)
-if '기준_년_코드' in df.columns and '분기_코드' in df.columns:
-    trend = filtered_df.groupby(['기준_년_코드', '분기_코드'])['점포_수'].sum().reset_index()
+# 시각화: 분기별 평균 운영 영업 개월
+if '기준_년분기_코드' in filtered_df.columns:
+    trend = filtered_df[['기준_년분기_코드', '운영_영업_개월_평균']].sort_values('기준_년분기_코드')
     fig, ax = plt.subplots()
-    ax.plot(trend['기준_년_코드'].astype(str) + "-Q" + trend['분기_코드'].astype(str), trend['점포_수'], marker='o')
-    ax.set_title("분기별 점포 수 변화")
-    ax.set_xlabel("연도-분기")
-    ax.set_ylabel("점포 수")
+    ax.plot(trend['기준_년분기_코드'], trend['운영_영업_개월_평균'], marker='o')
+    ax.set_title("분기별 평균 운영 영업 개월")
+    ax.set_xlabel("기준 년분기")
+    ax.set_ylabel("운영 영업 개월 평균")
+    plt.xticks(rotation=45)
     st.pyplot(fig)
