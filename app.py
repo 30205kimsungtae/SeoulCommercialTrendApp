@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # CSV 데이터 불러오기
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/서울시 상권분석서비스(상권변화지표-상권).csv", encoding="cp949")
+    df = pd.read_csv("data/seoul_data.csv", encoding="cp949")
     return df
 
 df = load_data()
