@@ -2,11 +2,15 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# 데이터 로딩
+# CSV 로딩
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/seoul_data.csv", encoding="cp949")
-    return df
+    try:
+        df = pd.read_csv("/mnt/data/seoul_data.csv", encoding="cp949")  # ← 여기 경로 주의!
+        return df
+    except Exception as e:
+        st.error(f"CSV 로딩 실패: {e}")
+        return pd.DataFrame()
 
 df = load_data()
 
