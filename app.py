@@ -12,7 +12,7 @@ st.title("📊 서울시 상권 변화 지표 분석")
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv("seoul_data.csv", encoding="cp949")  # 앱 실행 위치에 파일 둘 것
+        df = pd.read_csv("seoul_data", encoding="cp949")  # 앱 실행 위치에 파일 둘 것
         return df
     except Exception as e:
         st.error(f"CSV 로딩 실패: {e}")
